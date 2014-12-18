@@ -371,7 +371,7 @@ class PullTask(Task):
         self.o.pending('pulling image {}...'
                        .format(self.container.short_image))
         image = self.container.get_image_details()
-        for dlstatus in self.container.ship.backend.pull(stream=True, **image):
+        for dlstatus in self.container.ship.backend.pull(stream=True, insecure_registry=True, **image):
             percentage = self._update_pull_progress(dlstatus)
             self.o.pending('... {:.1f}%'.format(percentage))
 
